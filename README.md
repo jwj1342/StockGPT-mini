@@ -91,6 +91,7 @@ This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE)
 We welcome contributions! There are several contributors who have helped make this project great:
 
 1. jwj
+2. lss
 
 ---
 
