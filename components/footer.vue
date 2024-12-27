@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-md-6">
           <p>&copy; 2024 股票预测公司. All Rights Reserved.</p>
-          <p>版权所有 翻版必究</p>
+          <p>版权所有，翻版必究。</p>
         </div>
       </div>
     </div>
@@ -26,7 +26,7 @@ export default {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: #D3D3D3; /* 修改为浅灰色 */
+  background-color: white; /* 修改为白色 */
   color: black; /* 修改为黑色 */
   text-align: center;
   padding: 10px 0;
