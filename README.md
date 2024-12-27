@@ -56,16 +56,6 @@ npm run preview
 
 ---
 
-## 📚 Documentation
-
-Detailed documentation can be found in the [Docs folder](./docs) or visit our [online documentation](https://your-docs-url.com) for:
-
-- **API Reference**
-- **Configuration Guides**
-- **FAQ and Troubleshooting**
-
----
-
 ## 🌐 Deployment
 
 Learn more about deploying StockGPT-mini to various platforms by reading the [deployment guide](https://nuxt.com/docs/getting-started/deployment).
@@ -95,6 +85,7 @@ We welcome contributions! There are several contributors who have helped make th
 3. ld
 4. wys
 5. lyf
+
 ---
 
 ## 💬 Feedback
