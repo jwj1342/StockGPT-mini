@@ -2,16 +2,12 @@
 
 A lightweight, customizable stock market assistant built for developers and enthusiasts. StockGPT-mini is designed to provide insights and data about stocks with minimal setup and high flexibility.
 
----
-
 ## 🌟 Features
 
 - 📈 **Real-time Stock Data**: Access up-to-date market data with ease.
 - ⚡ **Lightweight Framework**: Minimal dependencies for faster development and deployment.
 - 🔧 **Customizable**: Tailor functionalities to meet your specific needs.
 - 🛠️ **Developer-Friendly**: Clear documentation and easy-to-use APIs.
-
----
 
 ## 📦 Installation
 
@@ -27,8 +23,6 @@ cd StockGPT-mini
 # Install dependencies using npm
 npm install
 ```
-
----
 
 ## 🚀 Getting Started
 
@@ -68,13 +62,9 @@ Learn more about deploying StockGPT-mini to various platforms by reading the [de
    ```
 2. Drag the `dist` folder to Netlify or use their CLI for automated deployment.
 
----
-
 ## 🛡️ License
 
 This project is licensed under the **MIT License**. See the [LICENSE](./LICENSE) file for more details.
-
----
 
 ## 🤝 Contributors
 
@@ -86,12 +76,8 @@ We welcome contributions! There are several contributors who have helped make th
 4. wys
 5. lyf
 
----
-
 ## 💬 Feedback
 
 Your feedback is valuable to us! Feel free to [open an issue](https://github.com/jwj1342/StockGPT-mini/issues).
-
----
 
 Thank you for using **StockGPT-mini**! 🚀
