@@ -33,8 +33,22 @@
 
         <!-- 登录注册按钮 -->
         <div class="flex items-center space-x-4">
-          <UButton color="gray" variant="soft">登录</UButton>
-          <UButton color="primary">注册</UButton>
+          <template v-if="!userStore.isLoggedIn">
+            <NuxtLink to="/login">
+              <UButton color="gray" variant="soft">登录</UButton>
+            </NuxtLink>
+            <NuxtLink to="/register">
+              <UButton color="primary">注册</UButton>
+            </NuxtLink>
+          </template>
+          <template v-else>
+            <div class="flex items-center space-x-4">
+              <span class="text-gray-700">欢迎, {{ userStore.username }}</span>
+              <UButton color="gray" variant="soft" @click="handleLogout">
+                退出
+              </UButton>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -50,6 +64,7 @@ import {
   LightBulbIcon,
   InformationCircleIcon
 } from '@heroicons/vue/24/outline';
+import { useUserStore } from '~/stores/user'
 
 const route = useRoute();
 const isActive = (path) => route.path === path;
@@ -61,4 +76,12 @@ const navItems = [
   { name: '策略辅助', path: '/strategy', icon: LightBulbIcon },
   { name: '关于', path: '/about', icon: InformationCircleIcon }
 ];
+
+const userStore = useUserStore()
+const router = useRouter()
+
+const handleLogout = () => {
+  userStore.logout()
+  router.push('/login')
+}
 </script>
