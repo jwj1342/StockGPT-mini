@@ -5,7 +5,11 @@
         <div class="flex items-center">
           <!-- Logo -->
           <NuxtLink to="/" class="flex items-center mr-8">
-            <div class="w-8 h-8 bg-primary-500 rounded mr-2"></div>
+            <img 
+              src="/tupian/logo3.jpg" 
+              alt="StockGPT Logo" 
+              class="w-10 h-10 mr-2 rounded"
+            />
             <span class="text-xl font-bold text-primary-500">StockGPT</span>
           </NuxtLink>
           
