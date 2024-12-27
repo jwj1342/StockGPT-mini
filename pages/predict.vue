@@ -1,32 +1,26 @@
 <template>
-  <UContainer>
-    <UCard class="mb-4">
-      <template #header>
-        <h3 class="text-lg font-semibold">预测分析</h3>
-      </template>
-      <Chart class="h-96" />
-    </UCard>
-
-    <div class="grid md:grid-cols-2 gap-4">
-      <UCard>
-        <template #header>
-          <h3 class="text-lg font-semibold">信息面板</h3>
-        </template>
-        <InfoPanel />
-      </UCard>
-
-      <UCard>
-        <template #header>
-          <h3 class="text-lg font-semibold">算法设置</h3>
-        </template>
-        <AlgorithmSettings />
-      </UCard>
+  <div class="min-h-screen bg-gray-100">
+    <div class="flex flex-col h-screen">
+      <!-- 图表区域 -->
+      <div class="flex-grow">
+        <StockChart />
+      </div>
+      
+      <!-- 底部面板 -->
+      <div class="h-1/3 flex gap-4 p-4 bg-white border-t">
+        <div class="w-2/3">
+          <IndicatorPanel />
+        </div>
+        <div class="w-1/3">
+          <PredictionPanel />
+        </div>
+      </div>
     </div>
-  </UContainer>
+  </div>
 </template>
 
 <script setup>
-import Chart from '~/components/Chart.vue';
-import InfoPanel from '~/components/InfoPanel.vue';
-import AlgorithmSettings from '~/components/AlgorithmSettings.vue';
+import StockChart from '~/components/predict/StockChart.vue'
+import IndicatorPanel from '~/components/predict/IndicatorPanel.vue'
+import PredictionPanel from '~/components/predict/PredictionPanel.vue'
 </script> 
