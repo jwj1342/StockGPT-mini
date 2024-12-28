@@ -4,31 +4,26 @@
     <main class="main-content">
       <NuxtPage />
     </main>
+    <Footer />
   </div>
 </template>
 
 <script setup>
 import Navbar from '~/components/Navbar.vue';
+import Footer from '~/components/Footer.vue';
 </script>
 
 <style>
+/* ... 其他样式 ... */
+
 .app-container {
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  background-color: #f0f2f5;
 }
 
 .main-content {
-  min-height: calc(100vh - 64px);
-}
-
-/* 全局样式重置 */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  flex: 1;
+  padding-bottom: 20px; /* 添加底部内边距，防止内容被 footer 遮挡 */
 }
 </style>
