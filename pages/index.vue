@@ -22,7 +22,7 @@
           </div>
           <div class="flex justify-end">
             <img 
-              src="/tupian/插图.jpg" 
+              src="/asset/img/hero.jpg" 
               alt="Hero Image" 
               class="rounded-lg object-cover"
               style="width: 500px; height: 500px;"
@@ -39,56 +39,56 @@
         <div class="grid grid-cols-4 gap-8">
           <!-- ChatGLM -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/aitifrxk.png" alt="ChatGLM" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/chatglm.png" alt="ChatGLM" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">ChatGLM</h3>
             <p class="text-sm text-gray-500 mt-2">智能对话模型</p>
           </div>
 
           <!-- ChatGPT -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/gpt.jpg" alt="ChatGPT" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/gpt.jpg" alt="ChatGPT" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">ChatGPT</h3>
             <p class="text-sm text-gray-500 mt-2">OpenAI旗舰模型</p>
           </div>
 
           <!-- Kimi -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/kimi.jpg" alt="Kimi" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/kimi.jpg" alt="Kimi" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">Kimi</h3>
             <p class="text-sm text-gray-500 mt-2">Moonshot AI</p>
           </div>
 
           <!-- 豆包AI -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/豆包.jpg" alt="豆包" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/douban.jpg" alt="豆包" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">豆包AI</h3>
             <p class="text-sm text-gray-500 mt-2">字节跳动</p>
           </div>
 
           <!-- 文心一言 -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/wxyy.jpg" alt="文心一言" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/wenxin.jpg" alt="文心一言" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">文心一言</h3>
             <p class="text-sm text-gray-500 mt-2">百度AI</p>
           </div>
 
           <!-- 微软小冰 -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/小冰.png" alt="小冰" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/xiaobing.png" alt="小冰" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">微软小冰</h3>
             <p class="text-sm text-gray-500 mt-2">对话机器人</p>
           </div>
 
           <!-- 小艺 -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/小艺.jpg" alt="小艺" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/xiaoyi.jpg" alt="小艺" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">小艺</h3>
             <p class="text-sm text-gray-500 mt-2">网易AI</p>
           </div>
 
           <!-- 智谱轻言 -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/智谱.jpg" alt="智谱" class="w-16 h-16 object-contain mb-4" />
+            <img src="/asset/img/zhipu.jpg" alt="智谱" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">智谱轻言</h3>
             <p class="text-sm text-gray-500 mt-2">智谱AI</p>
           </div>
@@ -309,7 +309,7 @@ const valuationModels = [
     name: '净资产收益率模型',
     shortDesc: 'ROE模型',
     icon: CalculatorIcon,
-    description: 'ROE模型衡量公司利用股东投入资本创造利润的能力，是评估公司盈利能力的重���指标。',
+    description: 'ROE模型衡量公司利用股东投入资本创造利润的能力，是评估公司盈利能力的重要指标。',
     formula: 'ROE = 净利润 / 股东权益'
   }
 ];

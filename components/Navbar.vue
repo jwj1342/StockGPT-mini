@@ -6,7 +6,7 @@
           <!-- Logo -->
           <NuxtLink to="/" class="flex items-center mr-8">
             <img 
-              src="/tupian/logo3.jpg" 
+              src="/asset/img/logo3.jpg"
               alt="StockGPT Logo" 
               class="w-10 h-10 mr-2 rounded"
             />
