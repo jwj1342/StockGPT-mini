@@ -4,7 +4,7 @@
     <main class="main-content">
       <NuxtPage />
     </main>
-    <Footer class="fixed-footer" />
+    <Footer />
   </div>
 </template>
 
@@ -24,13 +24,6 @@ import Footer from '~/components/Footer.vue';
 
 .main-content {
   flex: 1;
-}
-
-.fixed-footer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #fff; /* 根据需要调整背景颜色 */
-  z-index: 1000; /* 确保 footer 在最上层 */
+  padding-bottom: 20px; /* 添加底部内边距，防止内容被 footer 遮挡 */
 }
 </style>

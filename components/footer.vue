@@ -19,15 +19,11 @@ export default {
 
 <style scoped>
 .footer {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  background-color: white; /* 修改为白色 */
-  color: black; /* 修改为黑色 */
+  background-color: white;
+  color: black;
   text-align: center;
   padding: 10px 0;
   box-sizing: border-box;
