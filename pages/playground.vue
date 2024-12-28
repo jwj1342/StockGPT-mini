@@ -81,14 +81,17 @@
 import { ref } from 'vue';
 import { useChatStore } from '../stores/chatStore';
 
+// 输入框
 const input = ref('');
+// 聊天的 Pinia Store
 const chatStore = useChatStore();
+// 选择的模型
 const selectedModel = ref(null);
 
 // 模型选项
 const modelOptions = [
-  { label: 'GPT-3.5', value: 'gpt-3.5' },
-  { label: 'GPT-4', value: 'gpt-4' },
+  { label: 'GPT-4o-mini', value: 'gpt-4o-mini' },
+  { label: 'GPT-4o', value: 'gpt-4o' },
 ];
 
 // 示例历史对话
@@ -99,24 +102,57 @@ const savedChats = ref([
 ]);
 
 // 发送消息
-const sendMessage = () => {
+const sendMessage = async () => {
+  // 如果输入内容为空，则不发送
   if (!input.value.trim()) return;
-  
-  // 添加用户消息
+
+  // 先将用户的消息追加到对话中
   chatStore.addMessage({
     role: 'user',
     content: input.value
   });
-  
-  // 模拟AI响应
-  setTimeout(() => {
+
+  // 由于需要调用后端接口，最好使用 try/catch 保证出错时的处理
+  try {
+    // 这里的 `/chat` 就是你后端的路由地址，根据实际情况修改
+    const res = await fetch('https://cn-jn-lt-plustmp1.natfrp.cloud:25735/chat', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      // body 中的字段要和后端 FastAPI 中的 `ChatRequest` 模型对应
+      body: JSON.stringify({
+        model: selectedModel.value || 'gpt-4o',
+        message: input.value,
+        temperature: 1   // 可根据需求自定义
+      })
+    });
+
+    // 如果后端返回非 2xx 状态，抛出错误
+    if (!res.ok) {
+      throw new Error(`请求失败，状态码：${res.status}`);
+    }
+
+    // 解析后端返回的 JSON 数据
+    const data = await res.json();
+
+    // 后端返回的内容中，假设是 data.response 就是回答文本
+    // 现在把 AI 回答添加到聊天记录中
     chatStore.addMessage({
       role: 'assistant',
-      content: '这是一个模拟的AI响应...'
+      content: data.response
     });
-  }, 1000);
-  
-  input.value = '';
+  } catch (error) {
+    console.error('调用后端接口出错：', error);
+    // 如果需要，可以在界面上给用户一个错误提示
+    chatStore.addMessage({
+      role: 'assistant',
+      content: `AI 接口调用出错：${error.message}`
+    });
+  } finally {
+    // 无论成功还是失败都清空输入框
+    input.value = '';
+  }
 };
 </script>
 
