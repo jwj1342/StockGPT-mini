@@ -67,7 +67,7 @@
 
           <!-- 文心一言 -->
           <div class="flex flex-col items-center p-6 bg-white rounded-2xl shadow">
-            <img src="/tupian/文心一言.jpg" alt="文心一言" class="w-16 h-16 object-contain mb-4" />
+            <img src="/tupian/wxyy.jpg" alt="文心一言" class="w-16 h-16 object-contain mb-4" />
             <h3 class="font-semibold text-lg text-gray-900">文心一言</h3>
             <p class="text-sm text-gray-500 mt-2">百度AI</p>
           </div>
