@@ -9,7 +9,7 @@
           :class="{'justify-end': message.role === 'user'}">
           <div :class="[ 
             'p-3 rounded-lg max-w-xs',
-            message.role === 'user' ? 'bg-green-400 text-white' : 'bg-gray-200 text-black'
+            'bg-blue-400 text-white'
           ]">
             {{ message.content }}
           </div>
