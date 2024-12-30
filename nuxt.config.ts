@@ -8,7 +8,16 @@ export default defineNuxtConfig({
   ],
   ui: {
     global: true,
-    icons: ['heroicons']
+    icons: ['heroicons'],
+    components: {
+      datePicker: true,
+      popover: true,
+      input: true,
+      formGroup: true,
+      textarea: true,
+      select: true,
+      button: true
+    }
   },
   colorMode: {
     preference: 'light'

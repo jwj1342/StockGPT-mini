@@ -1,10 +1,10 @@
 <template>
-  <div class="app-container">
-    <Navbar />
-    <main class="main-content">
+  <div class="min-h-screen flex flex-col">
+    <Navbar class="flex-none" />
+    <main class="flex-1 overflow-hidden">
       <NuxtPage />
     </main>
-    <Footer />
+    <Footer class="flex-none" />
   </div>
 </template>
 
@@ -14,16 +14,5 @@ import Footer from '~/components/Footer.vue';
 </script>
 
 <style>
-/* ... 其他样式 ... */
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-.main-content {
-  flex: 1;
-  padding-bottom: 20px; /* 添加底部内边距，防止内容被 footer 遮挡 */
-}
+/* 移除之前的样式，使用新的 flex 布局 */
 </style>
