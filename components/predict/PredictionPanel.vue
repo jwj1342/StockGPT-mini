@@ -23,7 +23,7 @@
         />
       </div>
 
-      <div>
+      <!-- <div>
         <label class="block text-sm font-medium text-gray-700">置信区间</label>
         <USlider
           v-model="prediction.confidence"
@@ -32,7 +32,7 @@
           :step="0.01"
           class="mt-1"
         />
-      </div>
+      </div> -->
 
       <UButton
         color="primary"
