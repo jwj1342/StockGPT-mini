@@ -81,17 +81,20 @@
 
     <!-- 右侧主要内容 -->
     <div class="flex-1 flex flex-col overflow-hidden">
-      <!-- 图表区域 -->
-      <div class="flex-grow p-4 overflow-hidden">
+      <!-- 图表区域 - 增加高度 -->
+      <div class="h-[400px] p-4 overflow-hidden">
         <StrategyChart />
       </div>
       
-      <!-- 底部面板高度调整 -->
-      <div class="h-64 flex gap-4 p-4 bg-white border-t">
-        <div class="w-1/2 overflow-hidden">
+      <!-- 底部面板 - 同样增加高度 -->
+      <div class="flex-1 flex gap-4 p-4 bg-white border-t min-h-[500px]">
+        <div class="w-1/3 overflow-hidden">
+          <CustomStrategyPanel />
+        </div>
+        <div class="w-1/3 overflow-hidden">
           <UserTradePanel />
         </div>
-        <div class="w-1/2 overflow-hidden">
+        <div class="w-1/3 overflow-hidden">
           <PlatformStrategyPanel />
         </div>
       </div>
@@ -104,6 +107,7 @@ import { ref } from 'vue'
 import StrategyChart from '~/components/strategy/StrategyChart.vue'
 import UserTradePanel from '~/components/strategy/UserTradePanel.vue'
 import PlatformStrategyPanel from '~/components/strategy/PlatformStrategyPanel.vue'
+import CustomStrategyPanel from '~/components/strategy/CustomStrategyPanel.vue'
 
 const isCollapsed = ref(false)
 const inputMessage = ref('')
@@ -151,11 +155,11 @@ const sendMessage = () => {
 </script>
 
 <style scoped>
-/* 计算实际可用高度 */
+/* 计算实际可用高度 - 移除底部导航栏的高度计算 */
 .calc-height {
-  height: calc(100vh - 64px - 40px); /* 减去顶部导航栏(64px)和底部导航栏(40px)的高度 */
-  min-height: calc(100vh - 64px - 40px);
-  max-height: calc(100vh - 64px - 40px);
+  height: calc(100vh - 64px); /* 只减去顶部导航栏高度 */
+  min-height: calc(100vh - 64px);
+  max-height: calc(100vh - 64px);
 }
 
 /* 自定义滚动条样式 */

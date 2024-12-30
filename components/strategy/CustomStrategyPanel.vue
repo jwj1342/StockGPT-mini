@@ -1,6 +1,6 @@
 <template>
   <div class="h-full bg-white rounded-lg shadow p-4">
-    <h3 class="text-lg font-medium mb-4">平台策略历史收益</h3>
+    <h3 class="text-lg font-medium mb-4">个性化交易策略</h3>
     
     <div class="space-y-4">
       <div class="flex gap-4">
@@ -42,41 +42,49 @@
           />
         </div>
         <UButton 
-          v-if="selectedStocks.length < 5"
+          v-if="selectedStocks.length < 3"
           color="gray" 
           variant="soft" 
           @click="addStock"
           class="w-full"
         >
-          添加股票（最多5只）
+          添加股票（最多3只）
         </UButton>
       </div>
 
-      <div v-if="hasSelectedStocks" class="bg-gray-50 p-4 rounded-lg">
-        <h4 class="font-medium mb-2">平台策略建议</h4>
-        <p class="text-gray-600">{{ strategyAdvice }}</p>
+      <div class="bg-gray-50 p-4 rounded-lg">
+        <div class="flex justify-between items-center mb-2">
+          <h4 class="font-medium">交易策略</h4>
+          <UButton 
+            size="sm" 
+            color="primary" 
+            variant="soft"
+            @click="useAssistantStrategy"
+          >
+            使用助手策略
+          </UButton>
+        </div>
+        <UTextarea
+          v-model="strategyContent"
+          rows="3"
+          placeholder="输入您的交易策略..."
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 
 const selectedDate = ref(new Date().toISOString().split('T')[0])
-const expectedProfit = ref('2,345.67')
+const expectedProfit = ref('1,234.56')
+const strategyContent = ref('')
 
 const stockOptions = [
   { label: '贵州茅台 (600519)', value: '600519' },
   { label: '腾讯控股 (00700)', value: '00700' },
-  { label: '阿里巴巴 (09988)', value: '09988' },
-  { label: '中国平安 (601318)', value: '601318' },
-  { label: '招商银行 (600036)', value: '600036' },
-  { label: '五粮液 (000858)', value: '000858' },
-  { label: '美团-W (03690)', value: '03690' },
-  { label: '比亚迪 (002594)', value: '002594' },
-  { label: '宁德时代 (300750)', value: '300750' },
-  { label: '工商银行 (601398)', value: '601398' }
+  { label: '阿里巴巴 (09988)', value: '09988' }
 ]
 
 const selectedStocks = ref([
@@ -84,21 +92,15 @@ const selectedStocks = ref([
 ])
 
 const addStock = () => {
-  if (selectedStocks.value.length < 5) {
-    selectedStocks.value.push({ code: null, volume: '' })
-  }
+  selectedStocks.value.push({ code: null, volume: '' })
 }
 
 const removeStock = (index: number) => {
   selectedStocks.value.splice(index, 1)
 }
 
-const hasSelectedStocks = computed(() => {
-  return selectedStocks.value.some(stock => stock.code !== null)
-})
-
-const strategyAdvice = computed(() => {
-  if (!hasSelectedStocks.value) return ''
-  return '根据技术分析，建议在当前价位买入，目标价位上涨8%，止损位下跌3%。'
-})
+const useAssistantStrategy = () => {
+  // TODO: 从策略助手获取建议
+  strategyContent.value = '根据技术分析，建议在当前价位买入，目标价位上涨8%，止损位下跌3%。'
+}
 </script> 
