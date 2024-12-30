@@ -27,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, onUnmounted } from 'vue'
 import * as echarts from 'echarts'
 import type { EChartsOption } from 'echarts'
 
@@ -163,15 +163,35 @@ watch(() => props.platformStrategyData, (newVal) => {
   }
 }, { deep: true })
 
-// 初始化图表
+// 在 script setup 中添加
+const resize = () => {
+  if (chart) {
+    chart.resize()
+  }
+}
+
+// 暴露 resize 方法给父组件
+defineExpose({
+  resize
+})
+
+// 修改 onMounted 部分
 onMounted(() => {
   if (chartRef.value) {
     chart = echarts.init(chartRef.value)
     updateChart()
 
-    // 响应式调整
-    window.addEventListener('resize', () => {
+    // 使用 ResizeObserver 监听容器大小变化
+    const resizeObserver = new ResizeObserver(() => {
       chart?.resize()
+    })
+    
+    resizeObserver.observe(chartRef.value)
+
+    // 清理函数
+    onUnmounted(() => {
+      resizeObserver.disconnect()
+      chart?.dispose()
     })
   }
 })

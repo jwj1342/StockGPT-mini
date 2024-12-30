@@ -1,8 +1,14 @@
 <template>
-  <div class="h-full bg-white rounded-lg shadow p-4">
-    <h3 class="text-lg font-medium mb-4">平台策略历史收益</h3>
+  <div class="h-full bg-white rounded-lg shadow p-6">
+    <div class="flex items-center gap-2 mb-6">
+      <UIcon 
+        name="i-heroicons-presentation-chart-line" 
+        class="w-6 h-6 text-primary-500"
+      />
+      <h3 class="text-xl font-medium">平台策略历史收益</h3>
+    </div>
     
-    <div class="space-y-4">
+    <div class="space-y-6">
       <div class="flex gap-4">
         <UFormGroup label="日期" class="flex-1">
           <UInput 
