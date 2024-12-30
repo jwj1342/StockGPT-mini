@@ -83,19 +83,23 @@
     <div class="flex-1 flex flex-col overflow-hidden">
       <!-- 图表区域 - 增加高度 -->
       <div class="h-[400px] p-4 overflow-hidden">
-        <StrategyChart />
+        <StrategyChart 
+          :custom-strategy-data="customStrategyData"
+          :user-trade-data="userTradeData"
+          :platform-strategy-data="platformStrategyData"
+        />
       </div>
       
       <!-- 底部面板 - 同样增加高度 -->
       <div class="flex-1 flex gap-4 p-4 bg-white border-t min-h-[500px]">
         <div class="w-1/3 overflow-hidden">
-          <CustomStrategyPanel />
+          <CustomStrategyPanel @update-data="updateCustomStrategyData" />
         </div>
         <div class="w-1/3 overflow-hidden">
-          <UserTradePanel />
+          <UserTradePanel @update-data="updateUserTradeData" />
         </div>
         <div class="w-1/3 overflow-hidden">
-          <PlatformStrategyPanel />
+          <PlatformStrategyPanel @update-data="updatePlatformStrategyData" />
         </div>
       </div>
     </div>
@@ -128,6 +132,11 @@ const chatMessages = ref([
   { type: 'assistant', content: '根据最近的市场数据分析，主要指数呈现震荡上行趋势...' }
 ])
 
+// 在父组件中管理数据
+const customStrategyData = ref([2300, -1800, 3200, -2900, 3500, -2800, 3600, 4000])
+const userTradeData = ref([-1800, 2200, -2500, 2300, -2800, 3000, -2900, 3200])
+const platformStrategyData = ref([2500, -3000, 3500, -3200, 3800, -3200, 4000, -4500])
+
 const toggleCollapse = () => {
   isCollapsed.value = !isCollapsed.value
 }
@@ -151,6 +160,19 @@ const sendMessage = () => {
 
   // 清空输入
   inputMessage.value = ''
+}
+
+// 更新数据的方法
+const updateCustomStrategyData = (data: number[]) => {
+  customStrategyData.value = data
+}
+
+const updateUserTradeData = (data: number[]) => {
+  userTradeData.value = data
+}
+
+const updatePlatformStrategyData = (data: number[]) => {
+  platformStrategyData.value = data
 }
 </script>
 

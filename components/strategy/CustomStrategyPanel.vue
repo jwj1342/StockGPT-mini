@@ -75,7 +75,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { STOCK_OPTIONS } from '~/constants/stocks'
+
+const emit = defineEmits(['update-data'])
 
 const selectedDate = ref(new Date().toISOString().split('T')[0])
 const expectedProfit = ref('1,234.56')
@@ -103,4 +106,18 @@ const useAssistantStrategy = () => {
   // TODO: 从策略助手获取建议
   strategyContent.value = '根据技术分析，建议在当前价位买入，目标价位上涨8%，止损位下跌3%。'
 }
+
+// 监听股票选择和交易量变化
+watch(selectedStocks, (newStocks) => {
+  const chartData = Array(8).fill(0)
+  newStocks.forEach(stock => {
+    if (stock.code && stock.volume) {
+      const volume = parseInt(stock.volume)
+      chartData.forEach((_, index) => {
+        chartData[index] += Math.random() > 0.5 ? volume : -volume
+      })
+    }
+  })
+  emit('update-data', chartData)
+}, { deep: true })
 </script> 
