@@ -6,11 +6,11 @@
       <div class="flex gap-4">
         <UFormGroup label="日期" class="flex-1">
           <UInput 
-            :model-value="selectedDate" 
+            v-model="selectedDate" 
             type="date"
             :min="'2024-01-01'"
             :max="'2024-12-31'"
-            @update:model-value="selectedDate = $event"
+            @update:modelValue="generateTradeData"
           />
         </UFormGroup>
       </div>
@@ -28,12 +28,9 @@
             placeholder="选择股票"
             class="flex-1"
           />
-          <UInput
-            v-model="stock.volume"
-            type="number"
-            placeholder="交易量"
-            class="w-32"
-          />
+          <div class="w-32 px-3 py-1.5 bg-gray-50 rounded border text-gray-600">
+            {{ stock.volume ? `${stock.volume}股` : '-' }}
+          </div>
           <UButton 
             color="red" 
             variant="soft" 
@@ -68,32 +65,62 @@ const emit = defineEmits(['update-data'])
 
 const selectedDate = ref(new Date().toISOString().split('T')[0])
 const expectedProfit = ref('2,345.67')
-
-const stockOptions = [
-  { label: '贵州茅台 (600519)', value: '600519' },
-  { label: '腾讯控股 (00700)', value: '00700' },
-  { label: '阿里巴巴 (09988)', value: '09988' },
-  { label: '中国平安 (601318)', value: '601318' },
-  { label: '招商银行 (600036)', value: '600036' },
-  { label: '五粮液 (000858)', value: '000858' },
-  { label: '美团-W (03690)', value: '03690' },
-  { label: '比亚迪 (002594)', value: '002594' },
-  { label: '宁德时代 (300750)', value: '300750' },
-  { label: '工商银行 (601398)', value: '601398' }
-]
+const stockOptions = STOCK_OPTIONS
 
 const selectedStocks = ref([
   { code: null, volume: '' }
 ])
 
+// 生成交易量数据
+const generateTradeData = () => {
+  // 为每只选中的股票生成交易量
+  selectedStocks.value.forEach(stock => {
+    if (stock.code) {
+      // 生成一个基于股票代码的固定交易量
+      const baseVolume = parseInt(stock.code.slice(-4))
+      stock.volume = (baseVolume * 10).toString()
+    } else {
+      stock.volume = ''
+    }
+  })
+
+  // 生成图表数据
+  const chartData = Array(8).fill(0)
+  selectedStocks.value.forEach(stock => {
+    if (stock.code && stock.volume) {
+      const volume = parseInt(stock.volume)
+      chartData.forEach((_, index) => {
+        // 生成交易数据
+        chartData[index] += index % 2 === 0 ? volume : -volume
+      })
+    }
+  })
+
+  // 更新预期收益
+  const totalProfit = chartData.reduce((sum, val) => sum + Math.abs(val), 0) * 0.1
+  expectedProfit.value = totalProfit.toLocaleString('zh-CN', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  })
+
+  emit('update-data', chartData)
+}
+
+// 监听股票选择变化
+watch(() => selectedStocks.value.map(s => s.code), () => {
+  generateTradeData()
+}, { deep: true })
+
 const addStock = () => {
   if (selectedStocks.value.length < 5) {
     selectedStocks.value.push({ code: null, volume: '' })
+    generateTradeData()
   }
 }
 
 const removeStock = (index: number) => {
   selectedStocks.value.splice(index, 1)
+  generateTradeData()
 }
 
 const hasSelectedStocks = computed(() => {
@@ -105,17 +132,6 @@ const strategyAdvice = computed(() => {
   return '根据技术分析，建议在当前价位买入，目标价位上涨8%，止损位下跌3%。'
 })
 
-// 监听股票选择和交易量变化
-watch(selectedStocks, (newStocks) => {
-  const chartData = Array(8).fill(0)
-  newStocks.forEach(stock => {
-    if (stock.code && stock.volume) {
-      const volume = parseInt(stock.volume)
-      chartData.forEach((_, index) => {
-        chartData[index] += Math.random() > 0.5 ? volume : -volume
-      })
-    }
-  })
-  emit('update-data', chartData)
-}, { deep: true })
+// 初始化时生成一次数据
+generateTradeData()
 </script> 

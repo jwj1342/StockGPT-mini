@@ -23,6 +23,6 @@ export default defineNuxtConfig({
     preference: 'light'
   },
   build: {
-    transpile: ['echarts', 'vue-echarts']
+    transpile: ['echarts', 'vue-echarts', 'seedrandom']
   }
 })

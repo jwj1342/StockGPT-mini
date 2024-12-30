@@ -81,16 +81,21 @@
 
     <!-- 右侧主要内容 -->
     <div class="flex-1 flex flex-col overflow-hidden">
-      <!-- 图表区域 - 增加高度 -->
-      <div class="h-[400px] p-4 overflow-hidden">
-        <StrategyChart 
-          :custom-strategy-data="customStrategyData"
-          :user-trade-data="userTradeData"
-          :platform-strategy-data="platformStrategyData"
-        />
+      <!-- 图表区域 - 添加过渡效果和自适应宽度 -->
+      <div class="p-4 overflow-hidden transition-all duration-300">
+        <div 
+          class="h-[400px] transition-all duration-300"
+          :class="[isCollapsed ? 'w-full' : 'w-[calc(100%-1rem)]']"
+        >
+          <StrategyChart 
+            :custom-strategy-data="customStrategyData"
+            :user-trade-data="userTradeData"
+            :platform-strategy-data="platformStrategyData"
+          />
+        </div>
       </div>
       
-      <!-- 底部面板 - 同样增加高度 -->
+      <!-- 底部面板 -->
       <div class="flex-1 flex gap-4 p-4 bg-white border-t min-h-[500px]">
         <div class="w-1/3 overflow-hidden">
           <CustomStrategyPanel @update-data="updateCustomStrategyData" />
